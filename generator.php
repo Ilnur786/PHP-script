@@ -11,16 +11,22 @@ $sql2 = "SELECT height FROM sizes1 WHERE code= '{$size}'";
 $height_array = mysqli_query($link, $sql2);
 $h = (int)mysqli_fetch_row($height_array)[0];
 
-function doImagePreview($name, $width_new, $height_new)
+function fileBuildPath(...$segments): string
+{
+    return join(DIRECTORY_SEPARATOR, $segments);
+}
+
+function doImagePreview($name, $width_new, $height_new): string
 {
     $hash_dir_name = md5($name);
-    if (!file_exists(__DIR__.'\cache\\' . $hash_dir_name))
+    $dir_path = fileBuildPath('cache', $hash_dir_name);
+    if (!file_exists($dir_path))
     {
-        mkdir(__DIR__.'\cache\\' . $hash_dir_name);
+        mkdir($dir_path);
     }
-    $filename_preview = __DIR__."\cache\\{$hash_dir_name}\\{$width_new}{$height_new}.jpg";
-    $filename_original = __DIR__ ."\gallery\\{$name}.jpg";
-    $info   = getimagesize($filename_original);
+    $filename_preview = fileBuildPath(__DIR__, 'cache', $hash_dir_name, $width_new . $height_new . '.jpg');
+    $filename_original = fileBuildPath('gallery', $name . 'jpg');
+    $info = getimagesize($filename_original);
     $width_original  = $info[0];
     $height_original = $info[1];
     $img = imagecreatefromjpeg($filename_original);
@@ -30,10 +36,10 @@ function doImagePreview($name, $width_new, $height_new)
     imagedestroy($tmp);
     return $filename_preview;
 }
-function getImagePreview($name, $width_new, $height_new)
+function getImagePreview($name, $width_new, $height_new): string
 {
     $hash_dir_name = md5($name);
-    $filename_preview = __DIR__."\cache\\{$hash_dir_name}\\{$width_new}{$height_new}.jpg";
+    $filename_preview = fileBuildPath(__DIR__, 'cache', $hash_dir_name, $width_new . $height_new . '.jpg');
     if (!file_exists($filename_preview))
     {
         $filename_preview = doImagePreview($name, $width_new, $height_new);
