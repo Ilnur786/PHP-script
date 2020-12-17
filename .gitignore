@@ -1,5 +1,7 @@
 /cache/
 /extensions/
 /gallery/
+.idea
 test.html
 test.php
+test2.php

@@ -25,3 +25,6 @@ else
 
 print $width;
 print $height;
+
+?>
+

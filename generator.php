@@ -22,6 +22,7 @@ $filename = __DIR__ ."\gallery\\{$name}.jpg";
 print $filename;
 
 $info   = getimagesize($filename);
+var_dump($info);
 $width  = $info[0];
 $height = $info[1];
 $img = imagecreatefromjpeg($filename);
@@ -29,6 +30,14 @@ $tmp = imageCreateTrueColor($w, $h);
 
 imageCopyResampled($tmp, $img, 0, 0, 0, 0, $w, $h, $width, $height);
 
-imagejpeg($tmp, __DIR__."\cache\\{$name}.jpg", 100);
+$hash_dir_name = md5($name);
+$filename = __DIR__."/cache/{$hash_dir_name}/{$w}{$h}.jpg";
+
+if (!file_exists($filename))
+{
+    imagejpeg($tmp, $filename, 100);
+
+}
+
 ?>
 
