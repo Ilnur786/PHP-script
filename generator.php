@@ -4,12 +4,16 @@ require 'connection.php';
 
 $name = $_GET['name'];
 $size = $_GET['size'];
-$sql1 = "SELECT width FROM sizes1 WHERE code= '{$size}'";
-$width_array = mysqli_query($link, $sql1);
-$w = (int)mysqli_fetch_row($width_array)[0];
-$sql2 = "SELECT height FROM sizes1 WHERE code= '{$size}'";
-$height_array = mysqli_query($link, $sql2);
-$h = (int)mysqli_fetch_row($height_array)[0];
+//$sql1 = $pdo->prepare("SELECT width FROM sizes1 WHERE code = :size");
+//$sql1->execute(array(':size' => $size));
+//$row = $sql1->fetch();
+//$w = (int)$row['width'];
+$sql1 = $pdo->query("SELECT width FROM sizes1 WHERE code = '{$size}'");
+$row = $sql1->fetch();
+$w = (int)$row['width'];
+$sql2 = $pdo->query("SELECT height FROM sizes1 WHERE code = '{$size}'");
+$row = $sql2->fetch();
+$h = (int)$row['height'];
 
 function fileBuildPath(...$segments): string
 {
@@ -25,7 +29,7 @@ function doImagePreview($name, $width_new, $height_new): string
         mkdir($dir_path);
     }
     $filename_preview = fileBuildPath(__DIR__, 'cache', $hash_dir_name, $width_new . $height_new . '.jpg');
-    $filename_original = fileBuildPath('gallery', $name . 'jpg');
+    $filename_original = fileBuildPath('gallery', $name . '.jpg');
     $info = getimagesize($filename_original);
     $width_original  = $info[0];
     $height_original = $info[1];
@@ -47,7 +51,9 @@ function getImagePreview($name, $width_new, $height_new): string
     return $filename_preview;
 }
 
-print getImagePreview($name, $w, $h);
-
+$url = getImagePreview($name, $w, $h);
+header('Content-type: image/jpeg');
+readfile($url);
+//imagejpeg(imagecreatefromjpeg($url));
 ?>
 
