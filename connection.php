@@ -1,10 +1,7 @@
 <?php
-$host = 'localhost';
-$db   = 'test';
+$dsn = "mysql:host=localhost;dbname=test";
 $user = 'root';
 $pass = 'root';
-
-$dsn = "mysql:host=$host;dbname=$db";
 
 try {
     $pdo = new PDO($dsn, $user, $pass);
