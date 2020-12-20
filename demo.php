@@ -70,7 +70,7 @@ else
         while (false !== ($entry = readdir($handle))) {
             if ($entry != "." && $entry != "..") {
                 $img_name = pathinfo($entry)["filename"];?>
-                <img src="generator.php?name=<?print $entry;?>&size=<?print $size;?>" alt="">
+                <img src="generator.php?name=<?print $img_name;?>&size=<?print $size;?>" alt="">
             <?}
         }
         closedir($handle);
