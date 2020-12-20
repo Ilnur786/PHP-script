@@ -4,6 +4,8 @@ require 'connection.php';
 
 $name = $_GET['name'];
 $size = $_GET['size'];
+//$name = 'img';
+//$size = 'min';
 //$sql1 = $pdo->prepare("SELECT width FROM sizes1 WHERE code = :size");
 //$sql1->execute(array(':size' => $size));
 //$row = $sql1->fetch();
@@ -54,6 +56,7 @@ function getImagePreview($name, $width_new, $height_new): string
 $url = getImagePreview($name, $w, $h);
 header('Content-type: image/jpeg');
 readfile($url);
-//imagejpeg(imagecreatefromjpeg($url));
-?>
+//header('Content-type: text/plane');
+//echo $url;
+
 
