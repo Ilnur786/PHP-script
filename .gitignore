@@ -2,6 +2,7 @@
 /extensions/
 /gallery/
 .idea
+cache_ext
 test.php
 test2.php
 gallery_italia.html
