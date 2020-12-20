@@ -68,7 +68,8 @@ else
     <?
     if ($handle = opendir('gallery')) {
         while (false !== ($entry = readdir($handle))) {
-            if ($entry != "." && $entry != "..") {?>
+            if ($entry != "." && $entry != "..") {
+                $img_name = pathinfo($entry)["filename"];?>
                 <img src="generator.php?name=<?print $entry;?>&size=<?print $size;?>" alt="">
             <?}
         }
