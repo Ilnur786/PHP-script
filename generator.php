@@ -6,16 +6,12 @@ $name = $_GET['name'];
 $size = $_GET['size'];
 //$name = 'img';
 //$size = 'min';
-//$sql1 = $pdo->prepare("SELECT width FROM sizes1 WHERE code = :size");
-//$sql1->execute(array(':size' => $size));
-//$row = $sql1->fetch();
-//$w = (int)$row['width'];
-$sql1 = $pdo->query("SELECT width FROM sizes1 WHERE code = '{$size}'");
+$sql1 = $pdo->prepare("SELECT width, height FROM sizes1 WHERE code = :size");
+$sql1->execute(array(':size' => $size));
 $row = $sql1->fetch();
 $w = (int)$row['width'];
-$sql2 = $pdo->query("SELECT height FROM sizes1 WHERE code = '{$size}'");
-$row = $sql2->fetch();
 $h = (int)$row['height'];
+
 
 function fileBuildPath(...$segments): string
 {
@@ -50,7 +46,7 @@ function doImagePreview($name, $width_new, $height_new): string
 {
     $hash_dir_name = md5($name);
     $dir_path = fileBuildPath('cache_ext', $hash_dir_name);
-    if (!file_exists($dir_path))
+    if (!file_exists($dir_path))   #проверка на существование дериктории с изображениями разных размеров
     {
         mkdir($dir_path);
     }
@@ -70,7 +66,7 @@ function getImagePreview($name, $width_new, $height_new): string
 {
     $hash_dir_name = md5($name);
     $filename_preview = fileBuildPath(__DIR__, 'cache_ext', $hash_dir_name, $width_new . $height_new . '.jpg');
-    if (!file_exists($filename_preview))
+    if (!file_exists($filename_preview))   #проверка на существование изображения с необходимыми размерами
     {
         $filename_preview = doImagePreview($name, $width_new, $height_new);
     }

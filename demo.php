@@ -4,39 +4,14 @@ require 'connection.php';
 
 $browser = get_browser(null, true);
 
-if ($browser['ismobiledevice'])   #условие должно быть для Desktop
-{
-    $size = "mic";
-//    $sql1 = $pdo->query("SELECT width FROM sizes1 WHERE code = 'mic'");
-//    $row = $sql1->fetch();
-//    $w = (int)$row['width'];
-//    $sql2 = $pdo->query("SELECT height FROM sizes1 WHERE code = 'mic'");
-//    $row = $sql2->fetch();
-//    $h = (int)$row['height'];
-}
-else
+if ($browser['device_type'] == 'Desktop')
 {
     $size = "min";
-//    $sql1 = $pdo->query("SELECT width FROM sizes1 WHERE code = 'min'");
-//    $row = $sql1->fetch();
-//    $width = (int)$row['width'];
-//    $sql2 = $pdo->query("SELECT height FROM sizes1 WHERE code = 'min'");
-//    $row = $sql2->fetch();
-//    $height = (int)$row['height'];
+
 }
-
-//print $width;
-//print $height;
-
-//if ($handle = opendir('gallery')) {
-//    while (false !== ($entry = readdir($handle))) {
-//        if ($entry != "." && $entry != "..") {
-//            $path_parts = pathinfo($entry);
-//            echo $path_parts["filename"], "\n";
-//        }
-//    }
-//    closedir($handle);
-//}
+else {
+    $size = "mic";
+}
 ?>
 
 <!doctype html>
@@ -48,32 +23,45 @@ else
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/main.css">
     <title>Gallery</title>
-    <script src="js/jquery-3.5.1.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 </head>
 <body>
-<!--    <div class="button">-</div>-->
-<!--    <div class="gallery">-->
-<!--        <div class="big">-->
-<!--            <img src="gallery/start.jpg" alt="Start">-->
-<!--        </div>-->
-<!--        <div class="small">-->
-<!--            <a href="gallery/1.jpg"><img src="gallery/1_mini.jpg" alt=""></a>-->
-<!--            <a href="gallery/2.jpg"><img src="generator.php?name=2&size=mic" alt=""></a>-->
-<!--            <a href="gallery/3.jpg"><img src="gallery/3_mini.jpg" alt=""></a>-->
-<!--            <a href="gallery/4.jpg"><img src="gallery/4_mini.jpg" alt=""></a>-->
-<!--        </div>-->
-<!--    </div>-->
-<div class="gallery">
     <?
     if ($handle = opendir('gallery')) {
         while (false !== ($entry = readdir($handle))) {
-            if ($entry != "." && $entry != "..") {?>
-                <img src="generator.php?name=<?print $entry;?>&size=<?print $size;?>" alt="">
-            <?}
-        }
-        closedir($handle);
-    }
+            if ($entry != "." && $entry != "..") {
+                if ($size == 'min') {?>
+                <a href="generator.php?name=<?=$entry;?>&size=big"
+                   data-fancybox="images-preview" data-caption="800x600"
+                   data-thumbs='{"autoStart":true}'>
+                    <img src="generator.php?name=<?=$entry;?>&size=<?=$size;?>"  alt=""/>
+                </a>
+                <div style="display: none">
+                    <a href="generator.php?name=<?=$entry;?>&size=med" data-fancybox="images-preview" data-caption="640x480"
+                       data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                    <a href="generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
+                       data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                </div>
+                <?}
+                else {?>
+                <a href="generator.php?name=<?=$entry;?>&size=med"
+                   data-fancybox="images-preview" data-caption="640x480"
+                   data-thumbs='{"autoStart":true}'>
+                    <img src="generator.php?name=<?=$entry;?>&size=<?=$size;?>"  alt=""/>
+                </a>
+                <div style="display: none">
+                    <a href="generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
+                       data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                    <a href="generator.php?name=<?=$entry;?>&size=mic" data-fancybox="images-preview" data-caption="150x150"
+                       data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                </div>
+                <?}
+
+                    }
+                }
+                closedir($handle);
+            }
     ?>
-</div>
 </body>

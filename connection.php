@@ -1,9 +1,7 @@
 <?php
-//$dbConfig = include_once ROOT . '/config/dbConfig.php';
+include_once 'dbсonfig.php';
 
 $dsn = "mysql:host=localhost;dbname=test";
-$user = 'root';
-$pass = 'root';
 
 try {
     $pdo = new PDO($dsn, $user, $pass);
