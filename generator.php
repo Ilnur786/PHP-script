@@ -4,14 +4,13 @@ require 'connection.php';
 
 $name = $_GET['name'];
 $size = $_GET['size'];
-//$name = 'img';
+//$name = 'Безымянный.png';
 //$size = 'min';
 $sql1 = $pdo->prepare("SELECT width, height FROM sizes1 WHERE code = :size");
 $sql1->execute(array(':size' => $size));
 $row = $sql1->fetch();
 $w = (int)$row['width'];
 $h = (int)$row['height'];
-
 
 function fileBuildPath(...$segments): string
 {
@@ -20,24 +19,21 @@ function fileBuildPath(...$segments): string
 
 function imageCreateFromAny($filepath) {
     $type = exif_imagetype($filepath);
-    $allowedTypes = array(
-        1,  // [] gif
-        2,  // [] jpg
-        3  // [] png
-    );
-    if (!in_array($type, $allowedTypes)) {
-        return false;
-    }
+
     switch ($type) {
-        case 1 :
+        case IMAGETYPE_GIF :
             $im = imageCreateFromGif($filepath);
             break;
-        case 2 :
+        case IMAGETYPE_JPEG :
             $im = imageCreateFromJpeg($filepath);
             break;
-        case 3 :
+        case IMAGETYPE_PNG :
             $im = imageCreateFromPng($filepath);
             break;
+    }
+
+    if (!$im) {                 #какую то проверку добавить
+        return false;
     }
     return $im;
 }
