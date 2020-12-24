@@ -27,40 +27,55 @@ $detect = new Mobile_Detect;
             if ($entry != "." && $entry != "..") {
                 if ($detect->isMobile()) {
                     $size = 'mic';?>
-                <a href="generator.php?name=<?=$entry;?>&size=med"
-                   data-fancybox="images-preview" data-caption="640x480"
-                   data-thumbs='{"autoStart":true}'>
-                    <img src="generator.php?name=<?=$entry;?>&size=<?=$size;?>"  alt=""/>
-                </a>
-                <div style="display: none">
-                    <a href="generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
-                       data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
-                    <a href="generator.php?name=<?=$entry;?>&size=mic" data-fancybox="images-preview" data-caption="150x150"
-                       data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
-                </div>
+                    <a href="generator.php?name=<?=$entry;?>&size=med"
+                       data-fancybox="images-preview" data-caption="640x480"
+                       data-thumbs='{"autoStart":true}'>
+                        <img srcset="generator.php?name=<?=$entry;?>&size=mic 150w,
+                                    generator.php?name=<?=$entry;?>&size=min 320w,
+                                    generator.php?name=<?=$entry;?>&size=med 640w,
+                                    generator.php?name=<?=$entry;?>&size=big 800w"
+                             sizes="(max-width: 320px) 280px, (min-width: 320px) 280px, (min-width: 1200px) 1160px, (min-width: 1920px)"
+                             src="gallery/<?=$entry;?>" alt="">
+                    </a>
+                    <div style="display: none">
+                        <a href="generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
+                           data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                        <a href="generator.php?name=<?=$entry;?>&size=mic" data-fancybox="images-preview" data-caption="150x150"
+                           data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                    </div>
                 <?}
                 else if ($detect->isTablet()) {
                     $size = 'mic';?>
-                <a href="generator.php?name=<?=$entry;?>&size=big"
-                   data-fancybox="images-preview" data-caption="800x600"
-                   data-thumbs='{"autoStart":true}'>
-                    <img src="generator.php?name=<?=$entry;?>&size=<?=$size;?>"  alt=""/>
-                </a>
-                <div style="display: none">
-                    <a href="generator.php?name=<?=$entry;?>&size=med" data-fancybox="images-preview" data-caption="640x480"
-                       data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
-                    <a href="generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
-                       data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
-                    <a href="generator.php?name=<?=$entry;?>&size=mic" data-fancybox="images-preview" data-caption="150x150"
-                       data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
-                </div>
+                    <a href="generator.php?name=<?=$entry;?>&size=big"
+                       data-fancybox="images-preview" data-caption="800x600"
+                       data-thumbs='{"autoStart":true}'>
+                        <img srcset="generator.php?name=<?=$entry;?>&size=mic 150w,
+                                    generator.php?name=<?=$entry;?>&size=min 320w,
+                                    generator.php?name=<?=$entry;?>&size=med 640w,
+                                    generator.php?name=<?=$entry;?>&size=big 800w"
+                             sizes="(max-width: 320px) 280px, (min-width: 320px) 280px, (min-width: 1200px) 1160px, (min-width: 1920px)"
+                             src="gallery/<?=$entry;?>" alt="">
+                    </a>
+                    <div style="display: none">
+                        <a href="generator.php?name=<?=$entry;?>&size=med" data-fancybox="images-preview" data-caption="640x480"
+                           data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                        <a href="generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
+                           data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                        <a href="generator.php?name=<?=$entry;?>&size=mic" data-fancybox="images-preview" data-caption="150x150"
+                           data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                    </div>
                 <?}
                 else {
                     $size = 'min';?>
                     <a href="generator.php?name=<?=$entry;?>&size=big"
                        data-fancybox="images-preview" data-caption="800x600"
                        data-thumbs='{"autoStart":true}'>
-                        <img src="generator.php?name=<?=$entry;?>&size=<?=$size;?>"  alt=""/>
+                        <img srcset="generator.php?name=<?=$entry;?>&size=mic 150w,
+                                    generator.php?name=<?=$entry;?>&size=min 320w,
+                                    generator.php?name=<?=$entry;?>&size=med 640w,
+                                    generator.php?name=<?=$entry;?>&size=big 800w"
+                             sizes="(max-width: 320px) 280px, (min-width: 320px) 280px, (min-width: 1200px) 1160px, (min-width: 1920px)"
+                             src="gallery/<?=$entry;?>" alt="">
                     </a>
                     <div style="display: none">
                         <a href="generator.php?name=<?=$entry;?>&size=med" data-fancybox="images-preview" data-caption="640x480"
