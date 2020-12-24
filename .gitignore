@@ -1,6 +1,7 @@
 /cache/
 /extensions/
 .idea
+/cache_ext/*
 dbсonfig.php
 test.php
 test2.php
