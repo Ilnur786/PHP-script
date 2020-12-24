@@ -47,6 +47,13 @@ function imageCreateFromAny($filepath) {
     return $im;
 }
 
+/**
+ * @param $name
+ * @param $width_new
+ * @param $height_new
+ * @return string
+ * @throws Exception
+ */
 function doImagePreview($name, $width_new, $height_new): string {
     $hash_dir_name = md5($name);
     $dir_path = fileBuildPath('cache_ext', $hash_dir_name);
@@ -57,21 +64,21 @@ function doImagePreview($name, $width_new, $height_new): string {
     $filename_preview = fileBuildPath(__DIR__, 'cache_ext', $hash_dir_name, $width_new . $height_new . '.jpg');
     $filename_original = fileBuildPath('gallery', $name);
     if (!file_exists($filename_original) or !is_readable($filename_original)) {
-         throw new Exception("файл {$name} не существует или не доступен");
+        throw new Exception("файл {$name} не существует или не доступен");
     }
     if (!in_array(mime_content_type($filename_original), ['image/gif', 'image/jpeg', 'image/png'])) {
-        throw new Exception("файл {$name} не является изображением");
+        throw new Exception("файл {$name} не является одним из типов: GIF, JPEG/JPG, PNG");
     }
     $info = getimagesize($filename_original);
     if (!$info) {
-        throw new Exception("файл {$name} не существует или не доступен");
+        throw new Exception("файл {$name} не является изображением");
     }
     $width_original  = $info[0];
     $height_original = $info[1];
     try {
         $img = imageCreateFromAny($filename_original);
     } catch (Exception $e) {
-        echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
+        echo 'Выброшено исключение: ',  $e->getMessage(), "\r\n";
     }
     $tmp = imageCreateTrueColor($width_new, $height_new);
     imageCopyResampled($tmp, $img, 0, 0, 0, 0, $width_new, $height_new, $width_original, $height_original);
@@ -88,7 +95,7 @@ function getImagePreview($name, $width_new, $height_new): string {
         try {
             $filename_preview = doImagePreview($name, $width_new, $height_new);
         } catch (Exception $e) {
-            echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
+            echo 'Выброшено исключение: ',  $e->getMessage(), "\r\n";
         }
     }
     return $filename_preview;
@@ -105,7 +112,7 @@ try {
 }
 
 catch (Exception $e) {
-    echo 'Выброшено исключение: ',  $e->getMessage(), "\n";
+    echo 'Выброшено исключение: ',  $e->getMessage(), "\r\n";
 }
 //header('Content-type: text/plane');
 //echo $url;

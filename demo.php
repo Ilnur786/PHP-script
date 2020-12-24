@@ -1,17 +1,10 @@
 <?php
 
 require 'connection.php';
+require_once 'vendor/mobiledetect/mobiledetectlib/Mobile_Detect.php';
 
-$browser = get_browser(null, true);
+$detect = new Mobile_Detect;
 
-if ($browser['device_type'] == 'Desktop')
-{
-    $size = "min";
-
-}
-else {
-    $size = "mic";
-}
 ?>
 
 <!doctype html>
@@ -32,20 +25,8 @@ else {
     if ($handle = opendir('gallery')) {
         while (false !== ($entry = readdir($handle))) {
             if ($entry != "." && $entry != "..") {
-                if ($size == 'min') {?>
-                <a href="generator.php?name=<?=$entry;?>&size=big"
-                   data-fancybox="images-preview" data-caption="800x600"
-                   data-thumbs='{"autoStart":true}'>
-                    <img src="generator.php?name=<?=$entry;?>&size=<?=$size;?>"  alt=""/>
-                </a>
-                <div style="display: none">
-                    <a href="generator.php?name=<?=$entry;?>&size=med" data-fancybox="images-preview" data-caption="640x480"
-                       data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
-                    <a href="generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
-                       data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
-                </div>
-                <?}
-                else {?>
+                if ($detect->isMobile()) {
+                    $size = 'mic';?>
                 <a href="generator.php?name=<?=$entry;?>&size=med"
                    data-fancybox="images-preview" data-caption="640x480"
                    data-thumbs='{"autoStart":true}'>
@@ -58,7 +39,36 @@ else {
                        data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
                 </div>
                 <?}
-
+                else if ($detect->isTablet()) {
+                    $size = 'mic';?>
+                <a href="generator.php?name=<?=$entry;?>&size=big"
+                   data-fancybox="images-preview" data-caption="800x600"
+                   data-thumbs='{"autoStart":true}'>
+                    <img src="generator.php?name=<?=$entry;?>&size=<?=$size;?>"  alt=""/>
+                </a>
+                <div style="display: none">
+                    <a href="generator.php?name=<?=$entry;?>&size=med" data-fancybox="images-preview" data-caption="640x480"
+                       data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                    <a href="generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
+                       data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                    <a href="generator.php?name=<?=$entry;?>&size=mic" data-fancybox="images-preview" data-caption="150x150"
+                       data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                </div>
+                <?}
+                else {
+                    $size = 'min';?>
+                    <a href="generator.php?name=<?=$entry;?>&size=big"
+                       data-fancybox="images-preview" data-caption="800x600"
+                       data-thumbs='{"autoStart":true}'>
+                        <img src="generator.php?name=<?=$entry;?>&size=<?=$size;?>"  alt=""/>
+                    </a>
+                    <div style="display: none">
+                        <a href="generator.php?name=<?=$entry;?>&size=med" data-fancybox="images-preview" data-caption="640x480"
+                           data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                        <a href="generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
+                           data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                    </div>
+                <?}
                     }
                 }
                 closedir($handle);

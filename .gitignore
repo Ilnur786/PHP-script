@@ -2,6 +2,7 @@
 /extensions/
 .idea
 /cache_ext/*
+vendor
 dbсonfig.php
 test.php
 test2.php
