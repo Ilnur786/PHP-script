@@ -87,6 +87,12 @@ function doImagePreview($name, $width_new, $height_new): string {
     return $filename_preview;
 }
 
+/**
+ * @param $name
+ * @param $width_new
+ * @param $height_new
+ * @return string
+ */
 function getImagePreview($name, $width_new, $height_new): string {
     $hash_dir_name = md5($name);
     $filename_preview = fileBuildPath(__DIR__, 'cache_ext', $hash_dir_name, $width_new . $height_new . '.jpg');
