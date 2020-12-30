@@ -24,9 +24,9 @@ if (file_exists($test)) {
     echo $test;
     echo 'yes test ';
 }
-else echo $test;;
+else echo $test;
 $test1 = fileBuildPath(__DIR__, 'gallery', $name);
-if (file_exists($test1)) {
+if (file_exists($test1) and is_readable($test1)) {
     echo $test1;
     echo 'yes test1 ';
 }
