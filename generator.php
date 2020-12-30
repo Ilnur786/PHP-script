@@ -17,13 +17,13 @@ $w = (int)$row['width'];
 $h = (int)$row['height'];
 
 //test
-$test = fileBuildPath(__DIR__, 'cache_ext');
+$test = fileBuildPath('cache_ext');
 if (file_exists($test)) {
     echo $test;
     echo 'yes test';
 }
 else echo 'no test';
-$test1 = fileBuildPath(__DIR__, 'gallery', $name);
+$test1 = fileBuildPath('gallery', $name);
 if (file_exists($test1)) {
     echo $test;
     echo 'yes test1';
