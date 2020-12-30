@@ -60,7 +60,7 @@ function doImagePreview($name, $width_new, $height_new): string {
         mkdir($dir_path);
     }
     $filename_preview = fileBuildPath(__DIR__, 'cache_ext', $hash_dir_name, $width_new . $height_new . '.jpg');
-    $filename_original = fileBuildPath('gallery', $name);
+    $filename_original = fileBuildPath(__DIR__, 'gallery', $name);
     if (!file_exists($filename_original) or !is_readable($filename_original)) {
         throw new Exception("файл {$name} не существует или не доступен");
     }
