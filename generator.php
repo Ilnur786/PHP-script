@@ -18,15 +18,17 @@ $h = (int)$row['height'];
 
 //test
 $test = fileBuildPath('cache_ext');
-if (!file_exists($test)) {
-    echo 'yes test';
+if (file_exists($test)) {
+    echo $test;
+    echo 'yes test ';
 }
 else echo $test;;
 $test1 = fileBuildPath('gallery', $name);
-if (!file_exists($test1)) {
-    echo 'yes test1';
+if (file_exists($test1)) {
+    echo $test1;
+    echo 'yes test1 ';
 }
-else echo $test;;
+else echo 'no test1 ';
 //
 
 $cache_ext = fileBuildPath(__DIR__, 'cache_ext');
