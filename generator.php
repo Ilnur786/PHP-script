@@ -139,7 +139,7 @@ if (file_exists($filename_preview)) {
 
 $url = $filename_preview;
 //$url = 'gallery/img.jpg';
-header('Content-type: text/html');
+//header('Content-type: text/html');
 echo $url;
 //try {
 //    if (!file_exists($url)) {
