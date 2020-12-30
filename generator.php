@@ -19,29 +19,29 @@ $w = (int)$row['width'];
 $h = (int)$row['height'];
 
 //test
-$test = fileBuildPath(__DIR__, 'cache_ext');
-if (file_exists($test)) {
-    echo $test;
-    echo 'yes test ';
-}
-else echo $test;
-
-$test1 = fileBuildPath(__DIR__, 'gallery', $name);
-if (file_exists($test1) and is_readable($test1)) {
-    echo $test1;
-    echo 'yes test1 ';
-}
-else echo $test1;
-
-$test2 = fileBuildPath('gallery', $name);
-if (file_exists($test2) and is_readable($test2)) {
-    echo $test2;
-    echo 'yes test2 ';
-}
-else echo $test2;
+//$test = fileBuildPath(__DIR__, 'cache_ext');
+//if (file_exists($test)) {
+//    echo $test;
+//    echo 'yes test ';
+//}
+//else echo $test;
+//
+//$test1 = fileBuildPath(__DIR__, 'gallery', $name);
+//if (file_exists($test1) and is_readable($test1)) {
+//    echo $test1;
+//    echo 'yes test1 ';
+//}
+//else echo $test1;
+//
+//$test2 = fileBuildPath('gallery', $name);
+//if (file_exists($test2) and is_readable($test2)) {
+//    echo $test2;
+//    echo 'yes test2 ';
+//}
+//else echo $test2;
 //
 
-$cache_ext = fileBuildPath(__DIR__, 'cache_ext');
+$cache_ext = fileBuildPath('cache_ext');
 if (!file_exists($cache_ext)) {
     mkdir($cache_ext);
 }
@@ -83,13 +83,13 @@ function imageCreateFromAny($filepath) {
  */
 function doImagePreview($name, $width_new, $height_new): string {
     $hash_dir_name = md5($name);
-    $dir_path = fileBuildPath(__DIR__, 'cache_ext', $hash_dir_name);
+    $dir_path = fileBuildPath('cache_ext', $hash_dir_name);
     if (!file_exists($dir_path)) { #проверка на существование дериктории с изображениями разных размеров
 
         mkdir($dir_path);
     }
-    $filename_preview = fileBuildPath(__DIR__, 'cache_ext', $hash_dir_name, $width_new . $height_new . '.jpg');
-    $filename_original = fileBuildPath(__DIR__, 'gallery', $name);
+    $filename_preview = fileBuildPath('cache_ext', $hash_dir_name, $width_new . $height_new . '.jpg');
+    $filename_original = fileBuildPath('gallery', $name);
     if (!file_exists($filename_original) or !is_readable($filename_original)) {
         throw new Exception("файл {$name} по пути {$filename_original} не существует или не доступен");
     }
@@ -122,7 +122,7 @@ function doImagePreview($name, $width_new, $height_new): string {
  */
 function getImagePreview($name, $width_new, $height_new): string {
     $hash_dir_name = md5($name);
-    $filename_preview = fileBuildPath(__DIR__, 'cache_ext', $hash_dir_name, $width_new . $height_new . '.jpg');
+    $filename_preview = fileBuildPath('cache_ext', $hash_dir_name, $width_new . $height_new . '.jpg');
     if (!file_exists($filename_preview))   #проверка на существование изображения с необходимыми размерами
     {
         try {
