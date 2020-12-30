@@ -10,6 +10,8 @@ $name = $_GET['name'];
 $size = $_GET['size'];
 //$name = 'img.jpg';
 //$size = 'min';
+echo $name;
+echo $size;
 $sql1 = $pdo->prepare("SELECT width, height FROM sizes1 WHERE code = :size");
 $sql1->execute(array(':size' => $size));
 $row = $sql1->fetch();
