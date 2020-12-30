@@ -142,7 +142,7 @@ try {
     }
 //    header('Content-type: text/html');
 //    echo $url;
-//    header('Content-type: image/jpeg');
+    header('Content-type: image/jpeg');
     readfile($url);
 }
 
