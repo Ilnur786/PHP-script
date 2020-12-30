@@ -140,7 +140,7 @@ try {
     if (!file_exists($url)) {
         throw new Exception("не удалось сгенерировать изображение из {$name} по пути {$url}");
     }
-    header('Content-type: text/plane');
+    header('Content-type: text/html');
     echo $url;
 //    header('Content-type: image/jpeg');
 //    readfile($url);
