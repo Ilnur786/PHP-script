@@ -1,5 +1,5 @@
 <?php
-include_once 'dbсonfig.php';
+include_once 'dbconfig.example.php';
 
 try {
     $pdo = new PDO($dsn, $user, $pass);

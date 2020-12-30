@@ -28,7 +28,6 @@ function fileBuildPath(...$segments): string {
  */
 function imageCreateFromAny($filepath) {
     $type = exif_imagetype($filepath);
-
     switch ($type) {
         case IMAGETYPE_GIF :
             $im = imageCreateFromGif($filepath);
@@ -40,7 +39,6 @@ function imageCreateFromAny($filepath) {
             $im = imageCreateFromPng($filepath);
             break;
     }
-
     if (!$im) {
         throw new Exception("Не удалось открыть изображение. Возможно, файл не является одним из типов: GIF, JPEG/JPG, PNG");
     }
