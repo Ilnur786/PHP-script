@@ -93,26 +93,15 @@ if (file_exists($filename_preview)) {
     }
     $filename_preview = fileBuildPath('cache_ext', $hash_dir_name, $width_new . $height_new . '.jpg');
     $filename_original = fileBuildPath('gallery', $name);
-    if (!file_exists($filename_original) or !is_readable($filename_original)) {
-        throw new Exception("файл {$name} по пути {$filename_original} не существует или не доступен");
-    }
-    if (!in_array(mime_content_type($filename_original), ['image/gif', 'image/jpeg', 'image/png'])) {
-        throw new Exception("файл {$name} не является одним из типов: GIF, JPEG/JPG, PNG");
-    }
+
     $info = getimagesize($filename_original);
-    if (!$info) {
-        throw new Exception("файл {$name} не является изображением");
-    }
     $width_original  = $info[0];
     $height_original = $info[1];
-    try {
-        $img = imagecreatefromjpeg($filename_original);
-    } catch (Exception $e) {
-        echo 'Выброшено исключение: ',  $e->getMessage(), "\r\n";
-    }
+    $img = imagecreatefromjpeg($filename_original);
     $tmp = imageCreateTrueColor($width_new, $height_new);
     imageCopyResampled($tmp, $img, 0, 0, 0, 0, $width_new, $height_new, $width_original, $height_original);
-    imagejpeg($tmp, $filename_preview, 100);
+    header('Content-Type: image/jpeg');
+    imagejpeg($tmp, 100);
     imagedestroy($tmp);
 //    return $filename_preview;
 }
