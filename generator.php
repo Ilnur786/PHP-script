@@ -15,8 +15,8 @@ $size = $_GET['size'];
 $sql1 = $pdo->prepare("SELECT width, height FROM sizes1 WHERE code = :size");
 $sql1->execute(array(':size' => $size));
 $row = $sql1->fetch();
-$w = (int)$row['width'];
-$h = (int)$row['height'];
+$width_new = (int)$row['width'];
+$height_new = (int)$row['height'];
 
 //test
 //$test = fileBuildPath(__DIR__, 'cache_ext');
@@ -50,38 +50,41 @@ function fileBuildPath(...$segments): string {
     return join(DIRECTORY_SEPARATOR, $segments);
 }
 
-/**
- * @param $filepath
- * @return GdImage|resource
- * @throws Exception
- */
-function imageCreateFromAny($filepath) {
-    $type = exif_imagetype($filepath);
-    switch ($type) {
-        case IMAGETYPE_GIF :
-            $im = imageCreateFromGif($filepath);
-            break;
-        case IMAGETYPE_JPEG :
-            $im = imageCreateFromJpeg($filepath);
-            break;
-        case IMAGETYPE_PNG :
-            $im = imageCreateFromPng($filepath);
-            break;
-    }
-    if (!$im) {
-        throw new Exception("Не удалось открыть изображение. Возможно, файл не является одним из типов: GIF, JPEG/JPG, PNG");
-    }
-    return $im;
-}
+///**
+// * @param $filepath
+// * @return GdImage|resource
+// * @throws Exception
+// */
+//function imageCreateFromAny($filepath) {
+//    $type = exif_imagetype($filepath);
+//    switch ($type) {
+//        case IMAGETYPE_GIF :
+//            $im = imageCreateFromGif($filepath);
+//            break;
+//        case IMAGETYPE_JPEG :
+//            $im = imageCreateFromJpeg($filepath);
+//            break;
+//        case IMAGETYPE_PNG :
+//            $im = imageCreateFromPng($filepath);
+//            break;
+//    }
+//    if (!$im) {
+//        throw new Exception("Не удалось открыть изображение. Возможно, файл не является одним из типов: GIF, JPEG/JPG, PNG");
+//    }
+//    return $im;
+//}
 
-/**
- * @param $name
- * @param $width_new
- * @param $height_new
- * @return string
- * @throws Exception
- */
-function doImagePreview($name, $width_new, $height_new): string {
+///**
+// * @param $name
+// * @param $width_new
+// * @param $height_new
+// * @return string
+// * @throws Exception
+// */
+//function doImagePreview($name, $width_new, $height_new): string {
+$hash_dir_name = md5($name);
+$filename_preview = fileBuildPath('cache_ext', $hash_dir_name, $width_new . $height_new . '.jpg');
+if (file_exists($filename_preview)) {
     $hash_dir_name = md5($name);
     $dir_path = fileBuildPath('cache_ext', $hash_dir_name);
     if (!file_exists($dir_path)) { #проверка на существование дериктории с изображениями разных размеров
@@ -103,7 +106,7 @@ function doImagePreview($name, $width_new, $height_new): string {
     $width_original  = $info[0];
     $height_original = $info[1];
     try {
-        $img = imageCreateFromAny($filename_original);
+        $img = imagecreatefromjpeg($filename_original);
     } catch (Exception $e) {
         echo 'Выброшено исключение: ',  $e->getMessage(), "\r\n";
     }
@@ -111,30 +114,30 @@ function doImagePreview($name, $width_new, $height_new): string {
     imageCopyResampled($tmp, $img, 0, 0, 0, 0, $width_new, $height_new, $width_original, $height_original);
     imagejpeg($tmp, $filename_preview, 100);
     imagedestroy($tmp);
-    return $filename_preview;
+//    return $filename_preview;
 }
 
-/**
- * @param $name
- * @param $width_new
- * @param $height_new
- * @return string
- */
-function getImagePreview($name, $width_new, $height_new): string {
-    $hash_dir_name = md5($name);
-    $filename_preview = fileBuildPath('cache_ext', $hash_dir_name, $width_new . $height_new . '.jpg');
-    if (!file_exists($filename_preview))   #проверка на существование изображения с необходимыми размерами
-    {
-        try {
-            $filename_preview = doImagePreview($name, $width_new, $height_new);
-        } catch (Exception $e) {
-            echo 'Выброшено исключение: ',  $e->getMessage(), "\r\n";
-        }
-    }
-    return $filename_preview;
-}
+///**
+// * @param $name
+// * @param $width_new
+// * @param $height_new
+// * @return string
+// */
+//function getImagePreview($name, $width_new, $height_new): string {
+//    $hash_dir_name = md5($name);
+//    $filename_preview = fileBuildPath('cache_ext', $hash_dir_name, $width_new . $height_new . '.jpg');
+//    if (!file_exists($filename_preview))   #проверка на существование изображения с необходимыми размерами
+//    {
+//        try {
+//            $filename_preview = doImagePreview($name, $width_new, $height_new);
+//        } catch (Exception $e) {
+//            echo 'Выброшено исключение: ',  $e->getMessage(), "\r\n";
+//        }
+//    }
+//    return $filename_preview;
+//}
 
-$url = getImagePreview($name, $w, $h);
+$url = $filename_preview;
 //$url = 'gallery/img.jpg';
 header('Content-type: text/html');
 echo $url;
