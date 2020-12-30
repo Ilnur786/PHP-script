@@ -141,9 +141,9 @@ try {
         throw new Exception("не удалось сгенерировать изображение из {$name} по пути {$url}");
     }
 //    header('Content-type: text/html');
-    echo $url;
+//    echo $url;
 //    header('Content-type: image/jpeg');
-//    readfile($url);
+    readfile($url);
 }
 
 catch (Exception $e) {
