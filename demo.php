@@ -35,7 +35,7 @@ $detect = new Mobile_Detect;
                                     generator.php?name=<?=$entry;?>&size=med 640w,
                                     generator.php?name=<?=$entry;?>&size=big 800w"
                              sizes="(max-width: 320px) 280px, (min-width: 321px) 281px, (min-width: 1200px) 1160px, (min-width: 1920px)"
-                             src="gallery/<?=$entry;?>" alt="">
+                             src="https://php-gallery-ilnur.herokuapp.com/gallery/<?=$entry;?>" alt="">
                     </a>
                     <div style="display: none">
                         <a href="generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
@@ -54,7 +54,7 @@ $detect = new Mobile_Detect;
                                     generator.php?name=<?=$entry;?>&size=med 640w,
                                     generator.php?name=<?=$entry;?>&size=big 800w"
                              sizes="(max-width: 320px) 280px, (min-width: 321px) 281px, (min-width: 1200px) 1160px, (min-width: 1920px)"
-                             src="gallery/<?=$entry;?>" alt="">
+                             src="https://php-gallery-ilnur.herokuapp.com/gallery/<?=$entry;?>" alt="">
                     </a>
                     <div style="display: none">
                         <a href="generator.php?name=<?=$entry;?>&size=med" data-fancybox="images-preview" data-caption="640x480"
@@ -75,7 +75,7 @@ $detect = new Mobile_Detect;
                                     generator.php?name=<?=$entry;?>&size=med 640w,
                                     generator.php?name=<?=$entry;?>&size=big 800w"
                              sizes="(max-width: 320px) 280px, (min-width: 321px) 281px, (min-width: 1200px) 1160px, (min-width: 1920px)"
-                             src="gallery/<?=$entry;?>" alt="">
+                             src="https://php-gallery-ilnur.herokuapp.com/gallery/<?=$entry;?>" alt="">
                     </a>
                     <div style="display: none">
                         <a href="generator.php?name=<?=$entry;?>&size=med" data-fancybox="images-preview" data-caption="640x480"
