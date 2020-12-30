@@ -10,6 +10,6 @@ $dbparts = parse_url($url);
 $host = $dbparts['host'];
 $user = $dbparts['user'];
 $pass = $dbparts['pass'];
-$dbname = $dbparts['path'];
+$dbname = ltrim($dbparts['path'],'/');
 
 $dsn = "mysql:host={$host};dbname={$dbname}";
