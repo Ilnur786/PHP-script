@@ -10,8 +10,8 @@ $name = $_GET['name'];
 $size = $_GET['size'];
 //$name = 'img.jpg';
 //$size = 'min';
-echo $name;
-echo $size;
+//echo $name;
+//echo $size;
 $sql1 = $pdo->prepare("SELECT width, height FROM sizes1 WHERE code = :size");
 $sql1->execute(array(':size' => $size));
 $row = $sql1->fetch();
@@ -19,18 +19,18 @@ $w = (int)$row['width'];
 $h = (int)$row['height'];
 
 //test
-$test = fileBuildPath(__DIR__, 'cache_ext');
-if (file_exists($test)) {
-    echo $test;
-    echo 'yes test ';
-}
-else echo $test;
-$test1 = fileBuildPath(__DIR__, 'gallery', $name);
-if (file_exists($test1) and is_readable($test1)) {
-    echo $test1;
-    echo 'yes test1 ';
-}
-else echo $test1;
+//$test = fileBuildPath(__DIR__, 'cache_ext');
+//if (file_exists($test)) {
+//    echo $test;
+//    echo 'yes test ';
+//}
+//else echo $test;
+//$test1 = fileBuildPath(__DIR__, 'gallery', $name);
+//if (file_exists($test1) and is_readable($test1)) {
+//    echo $test1;
+//    echo 'yes test1 ';
+//}
+//else echo $test1;
 //
 
 $cache_ext = fileBuildPath(__DIR__, 'cache_ext');
@@ -83,7 +83,7 @@ function doImagePreview($name, $width_new, $height_new): string {
     $filename_preview = fileBuildPath(__DIR__, 'cache_ext', $hash_dir_name, $width_new . $height_new . '.jpg');
     $filename_original = fileBuildPath(__DIR__, 'gallery', $name);
     if (!file_exists($filename_original) or !is_readable($filename_original)) {
-        throw new Exception("файл {$name} не существует или не доступен");
+        throw new Exception("файл {$name} по пути {$filename_original} не существует или не доступен");
     }
     if (!in_array(mime_content_type($filename_original), ['image/gif', 'image/jpeg', 'image/png'])) {
         throw new Exception("файл {$name} не является одним из типов: GIF, JPEG/JPG, PNG");
@@ -130,7 +130,7 @@ $url = getImagePreview($name, $w, $h);
 
 try {
     if (!file_exists($url)) {
-        throw new Exception("не удалось сгенерировать изображение из {$name}");
+        throw new Exception("не удалось сгенерировать изображение из {$name} по пути {$url}");
     }
     header('Content-type: image/jpeg');
     readfile($url);
