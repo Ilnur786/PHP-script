@@ -16,7 +16,17 @@ $row = $sql1->fetch();
 $w = (int)$row['width'];
 $h = (int)$row['height'];
 
-echo __DIR__;
+//test
+$test = fileBuildPath(__DIR__, 'cache_ext');
+if (file_exists($test)) {
+    echo $test;
+}
+$test1 = fileBuildPath(__DIR__, 'gallery', $name);
+if (file_exists($test1)) {
+    echo $test;
+}
+//
+
 $cache_ext = fileBuildPath(__DIR__, 'cache_ext');
 if (!file_exists($cache_ext)) {
     mkdir($cache_ext);
@@ -59,7 +69,7 @@ function imageCreateFromAny($filepath) {
  */
 function doImagePreview($name, $width_new, $height_new): string {
     $hash_dir_name = md5($name);
-    $dir_path = fileBuildPath('cache_ext', $hash_dir_name);
+    $dir_path = fileBuildPath(__DIR__, 'cache_ext', $hash_dir_name);
     if (!file_exists($dir_path)) { #проверка на существование дериктории с изображениями разных размеров
 
         mkdir($dir_path);
