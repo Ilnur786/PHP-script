@@ -133,22 +133,24 @@ function getImagePreview($name, $width_new, $height_new): string {
     }
     return $filename_preview;
 }
-
-$url = getImagePreview($name, $w, $h);
-
-try {
-    if (!file_exists($url)) {
-        throw new Exception("не удалось сгенерировать изображение из {$name} по пути {$url}");
-    }
-    header('Content-type: text/html');
-    echo $url;
-//    header('Content-type: image/jpeg');
-//    readfile($url);
-}
-
-catch (Exception $e) {
-    echo 'Выброшено исключение: ',  $e->getMessage(), "\r\n";
-}
+$url = 'gallery/img.jpg';
+header('Content-type: text/html');
+echo $url;
+//$url = getImagePreview($name, $w, $h);
+//
+//try {
+//    if (!file_exists($url)) {
+//        throw new Exception("не удалось сгенерировать изображение из {$name} по пути {$url}");
+//    }
+//    header('Content-type: text/html');
+//    echo $url;
+////    header('Content-type: image/jpeg');
+////    readfile($url);
+//}
+//
+//catch (Exception $e) {
+//    echo 'Выброшено исключение: ',  $e->getMessage(), "\r\n";
+//}
 
 
 
