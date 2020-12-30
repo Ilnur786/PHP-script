@@ -133,11 +133,11 @@ function getImagePreview($name, $width_new, $height_new): string {
     }
     return $filename_preview;
 }
-$url = 'gallery/img.jpg';
+
+$url = getImagePreview($name, $w, $h);
+//$url = 'gallery/img.jpg';
 header('Content-type: text/html');
 echo $url;
-//$url = getImagePreview($name, $w, $h);
-//
 //try {
 //    if (!file_exists($url)) {
 //        throw new Exception("не удалось сгенерировать изображение из {$name} по пути {$url}");
