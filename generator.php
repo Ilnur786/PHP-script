@@ -2,6 +2,10 @@
 
 require 'connection.php';
 
+//if ($host == 'localhost') {
+//
+//}
+
 $name = $_GET['name'];
 $size = $_GET['size'];
 //$name = 'img.jpg';
@@ -12,6 +16,7 @@ $row = $sql1->fetch();
 $w = (int)$row['width'];
 $h = (int)$row['height'];
 
+echo __DIR__;
 $cache_ext = fileBuildPath(__DIR__, 'cache_ext');
 if (!file_exists($cache_ext)) {
     mkdir($cache_ext);
