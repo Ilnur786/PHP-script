@@ -1,3 +1,2 @@
 <?php
-$a = 12;
-print $a;
+header(" Location: https://php-gallery-ilnur.herokuapp.com/demo.php ");
