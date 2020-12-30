@@ -28,7 +28,7 @@ if (file_exists($test1)) {
     echo $test1;
     echo 'yes test1 ';
 }
-else echo 'no test1 ';
+else echo $test1;
 //
 
 $cache_ext = fileBuildPath(__DIR__, 'cache_ext');
