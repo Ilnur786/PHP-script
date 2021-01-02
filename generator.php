@@ -5,7 +5,7 @@ require 'connection.php';
 $name = $_GET['name'];
 $size = $_GET['size'];
 //$name = 'img.jpg';
-//$size = 'min';
+//$size = 'big';
 //echo $name;
 //echo $size;
 $sql1 = $pdo->prepare("SELECT width, height FROM sizes1 WHERE code = :size");
