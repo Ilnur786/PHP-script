@@ -27,61 +27,61 @@ $detect = new Mobile_Detect;
             if ($entry != "." && $entry != "..") {
                 if ($detect->isMobile()) {
                     $size = 'mic';?>
-                    <a href="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=med"
+                    <a href="generator.php?name=<?=$entry;?>&size=med"
                        data-fancybox="images-preview" data-caption="640x480"
                        data-thumbs='{"autoStart":true}'>
-                        <img srcset="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=mic 150w,
-                                    https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=min 320w,
-                                    https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=med 640w,
-                                    https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=big 800w"
+                        <img srcset="generator.php?name=<?=$entry;?>&size=mic 150w,
+                                    generator.php?name=<?=$entry;?>&size=min 320w,
+                                    generator.php?name=<?=$entry;?>&size=med 640w,
+                                    generator.php?name=<?=$entry;?>&size=big 800w"
                              sizes="(max-width: 320px) 280px, (min-width: 321px) 281px, (min-width: 1200px) 1160px, (min-width: 1920px)"
                              src="https://php-gallery-ilnur.herokuapp.com/gallery/<?=$entry;?>" alt="">
                     </a>
                     <div style="display: none">
-                        <a href="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
-                           data-thumb="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
-                        <a href="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=mic" data-fancybox="images-preview" data-caption="150x150"
-                           data-thumb="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                        <a href="generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
+                           data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                        <a href="generator.php?name=<?=$entry;?>&size=mic" data-fancybox="images-preview" data-caption="150x150"
+                           data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
                     </div>
                 <?}
                 else if ($detect->isTablet()) {
                     $size = 'mic';?>
-                    <a href="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=big"
+                    <a href="generator.php?name=<?=$entry;?>&size=big"
                        data-fancybox="images-preview" data-caption="800x600"
                        data-thumbs='{"autoStart":true}'>
-                        <img srcset="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=mic 150w,
-                                    https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=min 320w,
-                                    https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=med 640w,
-                                    https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=big 800w"
+                        <img srcset="generator.php?name=<?=$entry;?>&size=mic 150w,
+                                    generator.php?name=<?=$entry;?>&size=min 320w,
+                                    generator.php?name=<?=$entry;?>&size=med 640w,
+                                    generator.php?name=<?=$entry;?>&size=big 800w"
                              sizes="(max-width: 320px) 280px, (min-width: 321px) 281px, (min-width: 1200px) 1160px, (min-width: 1920px)"
                              src="https://php-gallery-ilnur.herokuapp.com/gallery/<?=$entry;?>" alt="">
                     </a>
                     <div style="display: none">
-                        <a href="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=med" data-fancybox="images-preview" data-caption="640x480"
-                           data-thumb="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
-                        <a href="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
-                           data-thumb="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
-                        <a href="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=mic" data-fancybox="images-preview" data-caption="150x150"
-                           data-thumb="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                        <a href="generator.php?name=<?=$entry;?>&size=med" data-fancybox="images-preview" data-caption="640x480"
+                           data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                        <a href="generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
+                           data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                        <a href="generator.php?name=<?=$entry;?>&size=mic" data-fancybox="images-preview" data-caption="150x150"
+                           data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
                     </div>
                 <?}
                 else {
                     $size = 'min';?>
-                    <a href="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=big"
+                    <a href="generator.php?name=<?=$entry;?>&size=big"
                        data-fancybox="images-preview" data-caption="800x600"
                        data-thumbs='{"autoStart":true}'>
-                        <img srcset="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=mic 150w,
-                                    https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=min 320w,
-                                    https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=med 640w,
-                                    https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=big 800w"
+                        <img srcset="generator.php?name=<?=$entry;?>&size=mic 150w,
+                                    generator.php?name=<?=$entry;?>&size=min 320w,
+                                    generator.php?name=<?=$entry;?>&size=med 640w,
+                                    generator.php?name=<?=$entry;?>&size=big 800w"
                              sizes="(max-width: 320px) 280px, (min-width: 321px) 281px, (min-width: 1200px) 1160px, (min-width: 1920px)"
                              src="https://php-gallery-ilnur.herokuapp.com/gallery/<?=$entry;?>" alt="">
                     </a>
                     <div style="display: none">
-                        <a href="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=med" data-fancybox="images-preview" data-caption="640x480"
-                           data-thumb="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
-                        <a href="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
-                           data-thumb="https://php-gallery-ilnur.herokuapp.com/generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                        <a href="generator.php?name=<?=$entry;?>&size=med" data-fancybox="images-preview" data-caption="640x480"
+                           data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
+                        <a href="generator.php?name=<?=$entry;?>&size=min" data-fancybox="images-preview" data-caption="320x240"
+                           data-thumb="generator.php?name=<?=$entry;?>&size=<?=$size;?>"></a>
                     </div>
                 <?}
                     }

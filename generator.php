@@ -2,10 +2,6 @@
 
 require 'connection.php';
 
-//if ($host == 'localhost') {
-//
-//}
-
 $name = $_GET['name'];
 $size = $_GET['size'];
 //$name = 'img.jpg';
@@ -17,29 +13,6 @@ $sql1->execute(array(':size' => $size));
 $row = $sql1->fetch();
 $w = (int)$row['width'];
 $h = (int)$row['height'];
-
-//test
-//$test = fileBuildPath(__DIR__, 'cache_ext');
-//if (file_exists($test)) {
-//    echo $test;
-//    echo 'yes test ';
-//}
-//else echo $test;
-//
-//$test1 = fileBuildPath(__DIR__, 'gallery', $name);
-//if (file_exists($test1) and is_readable($test1)) {
-//    echo $test1;
-//    echo 'yes test1 ';
-//}
-//else echo $test1;
-//
-//$test2 = fileBuildPath('gallery', $name);
-//if (file_exists($test2) and is_readable($test2)) {
-//    echo $test2;
-//    echo 'yes test2 ';
-//}
-//else echo $test2;
-//
 
 $cache_ext = fileBuildPath('cache_ext');
 if (!file_exists($cache_ext)) {
