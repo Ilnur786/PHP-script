@@ -1,9 +1,4 @@
 <?php
-//$user = $_ENV['USER'];
-//$pass = $_ENV['PASS'];
-//$host = $_ENV['HOST'];
-//$dbname = $_ENV['DB_NAME'];
-
 $url = getenv('JAWSDB_MARIA_URL');
 $dbparts = parse_url($url);
 
