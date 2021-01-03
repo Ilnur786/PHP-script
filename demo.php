@@ -78,6 +78,7 @@ $detect = new Mobile_Detect;
                                     generator.php?name=<?=$entry;?>&size=big 800w"
                              sizes="(max-width: 320px) 280px, (min-width: 321px) 281px, (min-width: 1200px) 1160px, (min-width: 1920px)"
                              src="gallery/<?=$entry;?>" alt="">
+                        <img src="" alt="">
                     </a>
                     <div style="display: none">
                         <a href="generator.php?name=<?=$entry;?>&size=med" data-fancybox="images-preview" data-caption="640x480"
