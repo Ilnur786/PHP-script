@@ -1,0 +1,16 @@
+{
+  "name": "vendor_name/composer",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "ильнур",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "mobiledetect/mobiledetectlib": "^2.8"
+  }
+}
