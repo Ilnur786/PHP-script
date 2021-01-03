@@ -2,7 +2,6 @@
 /extensions/
 .idea
 vendor
-dbсonfig.php
 test.php
 test2.php
 gallery_italia.html

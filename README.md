@@ -11,3 +11,5 @@ PHP libraries were used in this project:
 Other libraries:
 * MySQL database
 * FancyBox gallery
+
+To deploy project on your localhost, fill variables in *dbconfig.php* and require it in *connection.php*
