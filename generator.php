@@ -4,10 +4,6 @@ require 'connection.php';
 
 $name = $_GET['name'];
 $size = $_GET['size'];
-//$name = 'img.jpg';
-//$size = 'big';
-//echo $name;
-//echo $size;
 $sql1 = $pdo->prepare("SELECT width, height FROM sizes1 WHERE code = :size");
 $sql1->execute(array(':size' => $size));
 $row = $sql1->fetch();
@@ -57,7 +53,7 @@ function imageCreateFromAny($filepath) {
 function doImagePreview($name, $width_new, $height_new): string {
     $hash_dir_name = md5($name);
     $dir_path = fileBuildPath('cache_ext', $hash_dir_name);
-    if (!file_exists($dir_path)) { #проверка на существование дериктории с изображениями разных размеров
+    if (!file_exists($dir_path)) {
 
         mkdir($dir_path);
     }
@@ -96,7 +92,7 @@ function doImagePreview($name, $width_new, $height_new): string {
 function getImagePreview($name, $width_new, $height_new): string {
     $hash_dir_name = md5($name);
     $filename_preview = fileBuildPath('cache_ext', $hash_dir_name, $width_new . $height_new . '.jpg');
-    if (!file_exists($filename_preview))   #проверка на существование изображения с необходимыми размерами
+    if (!file_exists($filename_preview))
     {
         try {
             $filename_preview = doImagePreview($name, $width_new, $height_new);
