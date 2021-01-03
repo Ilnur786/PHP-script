@@ -1,6 +1,5 @@
 # Gallery on PHP
 
-========
 
 ### Script for generating jpg pictures and a gallery to demonstrate its work.
 
