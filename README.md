@@ -7,4 +7,7 @@ PHP libraries were used in this project:
 * GD
 * MobileDetect
 * PDO
+  
+Other libraries:
 * MySQL database
+* FancyBox gallery
