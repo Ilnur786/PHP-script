@@ -21,7 +21,7 @@ $detect = new Mobile_Detect;
 </head>
 <body>
 <h1>Gallery by Ilnur</h1>
-<a href="https://github.com/Ilnur786/PHP-script/tree/heroku"><h2>GitHub</h2></a>
+<a href="https://github.com/Ilnur786/PHP-script/tree/master"><h2>GitHub</h2></a>
 <div class="gallery">
     <?
     if ($handle = opendir('gallery')) {
