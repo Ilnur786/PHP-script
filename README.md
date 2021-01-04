@@ -9,7 +9,7 @@ PHP libraries were used in this project:
 * PDO
   
 Other libraries:
-* MySQL database
+* MySQL database (MariaDB) through JawsDB
 * FancyBox gallery
 
 To deploy project on your localhost, fill variables in *dbconfig.php* and require it in *connection.php*
